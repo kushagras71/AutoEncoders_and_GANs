@@ -10,4 +10,14 @@ The image generated may not be exactly the same but we can make out that the num
 It was trained for 20 epochs ( about 15 mins ) and it was able to come up with a satisfactory result. Obviously the performance can be improved.
 Surely a new, more efficient, more accurate and robust model will be uploaded soon
 
+The images generate by the model after traning are as follows: ( Number is 0 )
 
+<img src='Output_Images/image_1.png' width='120' height='120'> <img src='Output_Images/Image_3.png' width='120' height='120'>
+<img src='Output_Images/image_2.png' width='120' height='120'>
+<img src='Output_Images/image_9.png' width='120' height='120'>
+<img src='Output_Images/image_4.png' width='120' height='120'>
+<img src='Output_Images/image_5.png' width='120' height='120'>
+<img src='Output_Images/image_6.png' width='120' height='120'>
+<img src='Output_Images/image_7.png' width='120' height='120'>
+<img src='Output_Images/image_8.png' width='120' height='120'>
+<img src='Output_Images/image_10.png' width='120' height='120'>
