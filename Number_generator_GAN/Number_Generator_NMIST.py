@@ -2,18 +2,23 @@ import numpy as np
 import pandas as np
 import matplotlib.pyplot as plt
 
+# =============================================================================
+# Importing and splitting the dataset
+# =============================================================================
 from tensorflow.keras.datasets import mnist
 (x_train,y_train),(x_test,y_test) = mnist.load_data()
+
+# Scaling the values
 x_train = x_train/255
 x_test = x_test/255
 x_train = x_train.reshape(-1,28,28,1) * 2.0 - 1
-x_train.min()
+
+#Getting only the 0 digit images from the dataset for traning
 only_zeros = x_train[y_train==0]  
-#variables having only 0 number images
-# we can choose any numbers for the above line
 
-#discreminator it uses binary classification
-
+# =============================================================================
+# Creating the model ( DCGAN )
+# =============================================================================
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Reshape,Flatten
 from tensorflow.keras.layers import BatchNormalization,Flatten,MaxPooling2D
@@ -22,7 +27,7 @@ from tensorflow.keras.layers import ELU
 import tensorflow as tf
 
 # =============================================================================
-# Phase 2 model Generator
+# Generator Model
 # =============================================================================
 coding_size = 100
 # 100 -> 150 -> 784
@@ -36,7 +41,7 @@ generator.add(BatchNormalization())
 generator.add(Conv2DTranspose(1,kernel_size=5,strides=2,padding='same',
                               activation='tanh'))
 # =============================================================================
-# Phase 1 model Discriminator
+# Discriminator Model
 # =============================================================================
 # 784 -> 150 -> 100 -> 1
 discriminator = Sequential()
@@ -110,19 +115,23 @@ for epoch in range(epochs):
         discriminator.trainable = False
         
         GAN.train_on_batch(noise,y2)
-        
-        
-        
-        
 
+# =============================================================================
+# Getting a sample of noise generated
+# =============================================================================
 noise =tf.random.normal(shape=[10,coding_size])
 noise.shape
 plt.imshow(noise)
 
-
+# =============================================================================
+# Applying noise of the generator model so that it can generate the new images
+# =============================================================================
 images = generator(noise)
 images.shape
 
+# =============================================================================
+# Displaying the generated images
+# =============================================================================
 for image in images:
     plt.imshow(image.numpy().reshape(28,28))
     plt.show()
